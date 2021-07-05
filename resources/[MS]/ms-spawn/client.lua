@@ -275,6 +275,7 @@ AddEventHandler('ms-spawn:client:setupSpawns', function(cData, new, apps)
                 locations = ms.Spawns,
                 houses = myHouses,
             })
+            TriggerEvent("hud:client:SetMoney")
         end, cData.citizenid)
     elseif new then
         SendNUIMessage({

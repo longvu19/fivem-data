@@ -1,5 +1,5 @@
-$(document).on('keydown', function() {
-    switch(event.keyCode) {
+$(document).on('keydown', function () {
+    switch (event.keyCode) {
         case 27: // ESC
             //Inventory.Close();
             break;
@@ -12,36 +12,36 @@ var CurrentProx = 0;
 (() => {
     QBHud = {};
 
-    QBHud.Open = function(data) {
+    QBHud.Open = function (data) {
         $(".money-cash").css("display", "block");
         // $(".money-bank").css("display", "block");
         $("#cash").html(data.cash);
         // $("#bank").html(data.bank);
     };
 
-    QBHud.Close = function() {
+    QBHud.Close = function () {
 
     };
 
-    QBHud.Show = function(data) {
-        if(data.type == "cash") {
+    QBHud.Show = function (data) {
+        if (data.type == "cash") {
             $(".money-cash").fadeIn(150);
             //$(".money-cash").css("display", "block");
             $("#cash").html(data.cash);
-            setTimeout(function() {
+            setTimeout(function () {
                 $(".money-cash").fadeOut(750);
             }, 3500)
         } //else if(data.type == "bank") {
-            // $(".money-bank").fadeIn(150);
-            // $(".money-bank").css("display", "block");
-            // $("#bank").html(data.bank);
-            // setTimeout(function() {
-            //     $(".money-bank").fadeOut(750);
-            // }, 3500)
+        // $(".money-bank").fadeIn(150);
+        // $(".money-bank").css("display", "block");
+        // $("#bank").html(data.bank);
+        // setTimeout(function() {
+        //     $(".money-bank").fadeOut(750);
+        // }, 3500)
         //}
     };
 
-    QBHud.ToggleSeatbelt = function(data) {
+    QBHud.ToggleSeatbelt = function (data) {
         if (data.seatbelt) {
             $(".car-seatbelt-info img").attr('src', './seatbelt-on.png');
         } else {
@@ -49,7 +49,7 @@ var CurrentProx = 0;
         }
     };
 
-    QBHud.ToggleHarness = function(data) {
+    QBHud.ToggleHarness = function (data) {
         if (data.toggle) {
             $(".car-seatbelt-info").html('&nbsp;&nbsp;&nbsp;&nbsp;<span class="seatbelt-text">Harnas</div>');
         } else {
@@ -57,21 +57,21 @@ var CurrentProx = 0;
         }
     }
 
-    QBHud.UpdateNitrous = function(data) {
+    QBHud.UpdateNitrous = function (data) {
         if (data.toggle) {
             if (data.active) {
-                $("#nos-amount").css({"color":"#fcb80a"});
+                $("#nos-amount").css({ "color": "#fcb80a" });
             } else {
-                $("#nos-amount").css({"color":"#fff"});
+                $("#nos-amount").css({ "color": "#fff" });
             }
             $("#nos-amount").html(data.level);
         } else {
             $("#nos-amount").html("0");
-            $("#nos-amount").css({"color":"#fff"});
+            $("#nos-amount").css({ "color": "#fff" });
         }
     }
 
-    QBHud.CarHud = function(data) {
+    QBHud.CarHud = function (data) {
         if (data.show) {
             $(".ui-car-container").fadeIn();
         } else {
@@ -79,7 +79,7 @@ var CurrentProx = 0;
         }
     };
 
-    QBHud.UpdateHud = function(data) {
+    QBHud.UpdateHud = function (data) {
         var Show = "block";
         if (data.show) {
             Show = "none";
@@ -119,7 +119,7 @@ var CurrentProx = 0;
         }
     };
 
-    QBHud.UpdateProximity = function(data) {
+    QBHud.UpdateProximity = function (data) {
         if (data.prox == 1) {
             $("[data-voicetype='1']").fadeIn(150);
             $("[data-voicetype='2']").fadeOut(150);
@@ -136,23 +136,23 @@ var CurrentProx = 0;
         CurrentProx = data.prox;
     }
 
-    QBHud.SetTalkingState = function(data) {
+    QBHud.SetTalkingState = function (data) {
         if (!data.IsTalking) {
-            $(".voice-block").animate({"background-color": "rgb(255, 255, 255)"}, 150);
+            $(".voice-block").animate({ "background-color": "rgb(255, 255, 255)" }, 150);
         } else {
-            $(".voice-block").animate({"background-color": "#fc4e03"}, 150);
+            $(".voice-block").animate({ "background-color": "#fc4e03" }, 150);
         }
     }
 
-    QBHud.Update = function(data) {
-        if(data.type == "cash") {
+    QBHud.Update = function (data) {
+        if (data.type == "cash") {
             $(".money-cash").css("display", "block");
             $("#cash").html(data.cash);
             if (data.minus) {
                 $(".money-cash").append('<p class="moneyupdate minus">-<span id="cash-symbol">&euro;&nbsp;</span><span><span id="minus-changeamount">' + data.amount + '</span></span></p>')
                 $(".minus").css("display", "block");
-                setTimeout(function() {
-                    $(".minus").fadeOut(750, function() {
+                setTimeout(function () {
+                    $(".minus").fadeOut(750, function () {
                         $(".minus").remove();
                         $(".money-cash").fadeOut(750);
                     });
@@ -160,8 +160,8 @@ var CurrentProx = 0;
             } else {
                 $(".money-cash").append('<p class="moneyupdate plus">+<span id="cash-symbol">&euro;&nbsp;</span><span><span id="plus-changeamount">' + data.amount + '</span></span></p>')
                 $(".plus").css("display", "block");
-                setTimeout(function() {
-                    $(".plus").fadeOut(750, function() {
+                setTimeout(function () {
+                    $(".plus").fadeOut(750, function () {
                         $(".plus").remove();
                         $(".money-cash").fadeOut(750);
                     });
@@ -170,7 +170,7 @@ var CurrentProx = 0;
         }
     };
 
-    QBHud.UpdateCompass = function(data) {
+    QBHud.UpdateCompass = function (data) {
         var amt = (data.heading * 0.1133333333333333);
         if (data.lookside == "left") {
             $(".compass-ui").css({
@@ -183,7 +183,7 @@ var CurrentProx = 0;
         }
     }
 
-    QBHud.UpdateMeters = function(data) {
+    QBHud.UpdateMeters = function (data) {
         var str = data.amount.toString();
         var l = str.length;
         $(".meters-text").html(data.amount + " <span style='position: relative; top: -.49vh; font-size: 1.2vh;'>km</span>");
@@ -193,14 +193,14 @@ var CurrentProx = 0;
         let height = 35.5;
         let eleHeight = (value / 100) * height;
         let leftOverHeight = height - eleHeight;
-    
+
         ele.css("width", eleHeight + "px");
-       // ele.css("right", leftOverHeight + "px");
+        // ele.css("right", leftOverHeight + "px");
     };
 
-    window.onload = function(e) {
-        window.addEventListener('message', function(event) {
-            switch(event.data.action) {
+    window.onload = function (e) {
+        window.addEventListener('message', function (event) {
+            switch (event.data.action) {
                 case "open":
                     QBHud.Open(event.data);
                     break;
