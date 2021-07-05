@@ -1,9 +1,7 @@
-@import url('https://fonts.googleapis.com/css?family=Raleway&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro&display=swap');
 
 .container {
-    font-family: 'Source Sans Pro', monospace;
+    font-family: 'Quicksand', monospace;
 }
  
 .spawn-locations {
@@ -51,7 +49,7 @@
     text-align: center;
     line-height: 4.5vh;
     font-size: 13px;
-    font-family: 'Lato';
+    font-family: 'Quicksand';
     letter-spacing: 1px;
     font-weight: bold;
 }
@@ -74,7 +72,7 @@
 }
 
 .loclabel > p {
-    font-family: 'Lato';
+    font-family: 'Quicksand';
     letter-spacing: 1px;
     font-weight: bold;
     position: relative;

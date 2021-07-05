@@ -200,7 +200,7 @@ function closeGui()
 end
 
 DrawText3Ds = function(x, y, z, text)
-	SetTextScale(0.35, 0.35)
+	  SetTextScale(0.3, 0.3)
     SetTextFont(MSCore.quicksandId)
     SetTextProportional(1)
     SetTextColour(255, 255, 255, 215)
@@ -210,7 +210,7 @@ DrawText3Ds = function(x, y, z, text)
     SetDrawOrigin(x,y,z, 0)
     DrawText(0.0, 0.0)
     local factor = (string.len(text)) / 370
-    -- DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)
+    DrawRect(0.0+0.0005, 0.0+0.015, 0.027+ factor, 0.03, 0, 0, 0, 75)
     ClearDrawOrigin()
 end
 
@@ -228,7 +228,7 @@ Citizen.CreateThread(function()
           inRange = true
           if not banks[bankkey].Closed then
             DrawMarker(2, banks[bankkey].x, banks[bankkey].y, banks[bankkey].z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.2, 0.2, 0.1, 55, 255, 55, 255, 0, 0, 0, 1, 0, 0, 0)
-            DrawText3Ds(banks[bankkey].x, banks[bankkey].y, banks[bankkey].z + 0.3, '[E] Nạp thẻ ATM')
+            DrawText3Ds(banks[bankkey].x, banks[bankkey].y, banks[bankkey].z + 0.3, '~g~E~w~ - Nạp thẻ ATM')
             if IsControlJustPressed(1, Keys["E"])  then
                 if (not IsInVehicle()) then
                     if bankOpen then
