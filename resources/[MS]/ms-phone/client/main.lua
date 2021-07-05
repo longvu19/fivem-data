@@ -1769,15 +1769,24 @@ RegisterNUICallback('TransferCrypto', function(data, cb)
 end)
 
 RegisterNetEvent('ms-phone:client:RemoveBankMoney')
-AddEventHandler('ms-phone:client:RemoveBankMoney', function(amount)
+AddEventHandler('ms-phone:client:RemoveBankMoney', function(amount,moneytype)
+    local action = nil
+    local colour = nil
+    if moneytype == 'bank' then 
+        action = 'rút'
+        colour = '#ff002f'
+    else 
+        action = 'nộp'
+        colour = '#04b543'
+    end
     if PhoneData.isOpen then
         SendNUIMessage({
             action = "PhoneNotification",
             PhoneNotify = {
-                title = "Bank",
-                text = "Were debited $"..amount..",- from  your account",
+                title = "Thông báo ngân hàng",
+                text = "Đã "..action.." $"..amount.." từ tài khoản",
                 icon = "fas fa-university",
-                color = "#ff002f",
+                color = colour,
                 timeout = 3500,
             },
         })
@@ -1785,11 +1794,11 @@ AddEventHandler('ms-phone:client:RemoveBankMoney', function(amount)
         SendNUIMessage({
             action = "Notification",
             NotifyData = {
-                title = "Bank",
-                content = "Were debited $"..amount..",- from  your account",
+                title = "Thông báo ngân hàng",
+                content = "Đã "..action.." $"..amount.." từ tài khoản",
                 icon = "fas fa-university",
                 timeout = 3500,
-                color = "#ff002f",
+                color = colour,
             },
         })
     end

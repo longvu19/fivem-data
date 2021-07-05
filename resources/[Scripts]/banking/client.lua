@@ -187,15 +187,21 @@ end
 
 -- Close Gui and disable NUI
 function closeGui()
-  SetNuiFocus(false, false)
+  local ped = GetPlayerPed(-1)
+  local playerPed = GetPlayerPed(-1)
+  TaskStartScenarioInPlace(playerPed, "PROP_HUMAN_ATM", 0, true)
   SendNUIMessage({openBank = false})
-  bankOpen = false
-  atmOpen = false
+  SetNuiFocus(false, false)
+  MSCore.Functions.Progressbar("use_bank", "Đang nhận lại thẻ..", 1000, false, true, {}, {}, {}, {}, function() -- Done
+    ClearPedTasksImmediately(ped)
+    bankOpen = false
+    atmOpen = false
+  end, {})
 end
 
 DrawText3Ds = function(x, y, z, text)
 	SetTextScale(0.35, 0.35)
-    SetTextFont(12)
+    SetTextFont(MSCore.quicksandId)
     SetTextProportional(1)
     SetTextColour(255, 255, 255, 215)
     SetTextEntry("STRING")
@@ -204,7 +210,7 @@ DrawText3Ds = function(x, y, z, text)
     SetDrawOrigin(x,y,z, 0)
     DrawText(0.0, 0.0)
     local factor = (string.len(text)) / 370
-    DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)
+    -- DrawRect(0.0, 0.0+0.0125, 0.017+ factor, 0.03, 0, 0, 0, 75)
     ClearDrawOrigin()
 end
 
@@ -235,7 +241,7 @@ Citizen.CreateThread(function()
                 end
             end
           else
-            DrawText3Ds(banks[bankkey].x, banks[bankkey].y, banks[bankkey].z + 0.3, 'Ngân hàng đóng cửa')
+            DrawText3Ds(banks[bankkey].x, banks[bankkey].y, banks[bankkey].z + 0.3, 'Ngân hàng đã đóng cửa')
             DrawMarker(2, banks[bankkey].x, banks[bankkey].y, banks[bankkey].z, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.2, 0.2, 0.1, 255, 55, 55, 255, 0, 0, 0, 1, 0, 0, 0)
           end
         elseif IsNearATM() then

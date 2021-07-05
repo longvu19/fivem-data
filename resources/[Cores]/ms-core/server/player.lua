@@ -213,7 +213,7 @@ MSCore.Player.CreatePlayer = function(PlayerData)
 				TriggerEvent("ms-log:server:CreateLog", "playermoney", "RemoveMoney", "red", "**"..GetPlayerName(self.PlayerData.source) .. " (citizenid: "..self.PlayerData.citizenid.." | id: "..self.PlayerData.source..")** $"..amount .. " ("..moneytype..") removed, new "..moneytype.." balance: "..self.PlayerData.money[moneytype])
 			end
 			TriggerClientEvent("hud:client:OnMoneyChange", self.PlayerData.source, moneytype, amount, true)
-			TriggerClientEvent('ms-phone:client:RemoveBankMoney', self.PlayerData.source, amount)
+			TriggerClientEvent('ms-phone:client:RemoveBankMoney', self.PlayerData.source, amount, moneytype)
 			return true
 		end
 		return false
