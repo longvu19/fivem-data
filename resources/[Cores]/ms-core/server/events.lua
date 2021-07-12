@@ -19,52 +19,52 @@ end)
 AddEventHandler('playerConnecting', function(playerName, setKickReason, deferrals)
 	deferrals.defer()
 	local src = source
-	deferrals.update("\nChecking name...")
+	deferrals.update("\nĐang kiểm tra tên...")
 	local name = GetPlayerName(src)
 	if name == nil then 
-		MSCore.Functions.Kick(src, 'Do not use a blank steam user name.', setKickReason, deferrals)
+		MSCore.Functions.Kick(src, 'Không được để trống tên tài khoản Steam.', setKickReason, deferrals)
         CancelEvent()
         return false
 	end
 	if(string.match(name, "[*%%'=`\"]")) then
-        MSCore.Functions.Kick(src, 'You have a character in your username ('..string.match(name, "[*%%'=`\"]")..') that is not allowed.\nPlease remove this out of your Steam username.', setKickReason, deferrals)
+        MSCore.Functions.Kick(src, 'Tên tài khoản có kí tự ('..string.match(name, "[*%%'=`\"]")..') không được cho phép.', setKickReason, deferrals)
         CancelEvent()
         return false
 	end
 	if (string.match(name, "drop") or string.match(name, "table") or string.match(name, "database")) then
-        MSCore.Functions.Kick(src, 'Your username contains a word (drop / table / database) which is not allowed.Please change your username on Steam.', setKickReason, deferrals)
+        MSCore.Functions.Kick(src, 'Tên tài khoản có chứa từ (drop / table / database) không được cho phép', setKickReason, deferrals)
         CancelEvent()
         return false
 	end
-	deferrals.update("\nChecking identifiers...")
+	deferrals.update("\nĐang kiểm tra danh tính...")
     local identifiers = GetPlayerIdentifiers(src)
 	local steamid = identifiers[1]
 	local license = identifiers[2]
     if (MSConfig.IdentifierType == "steam" and (steamid:sub(1,6) == "steam:") == false) then
-        MSCore.Functions.Kick(src, 'You need to open Steam to play.', setKickReason, deferrals)
+        MSCore.Functions.Kick(src, 'Bạn phải mở Steam để chơi.', setKickReason, deferrals)
         CancelEvent()
 		return false
 	elseif (MSConfig.IdentifierType == "license" and (steamid:sub(1,6) == "license:") == false) then
-		MSCore.Functions.Kick(src, 'No license for Social Club found.', setKickReason, deferrals)
+		MSCore.Functions.Kick(src, 'Không có giấy phép nào thuộc Social Club.', setKickReason, deferrals)
         CancelEvent()
 		return false
     end
-	deferrals.update("\nChecking ban status...")
+	deferrals.update("\nĐang kiểm tra trạng thái ban...")
     local isBanned, Reason = MSCore.Functions.IsPlayerBanned(src)
     if(isBanned) then
         MSCore.Functions.Kick(src, Reason, setKickReason, deferrals)
         CancelEvent()
         return false
     end
-	deferrals.update("\nChecking whitelist status...")
+	deferrals.update("\nĐang kiểm tra whitelist...")
     if(not MSCore.Functions.IsWhitelisted(src)) then
-        MSCore.Functions.Kick(src, 'You are not on the whitelist.', setKickReason, deferrals)
+        MSCore.Functions.Kick(src, 'Bạn không ở trong whitelist.', setKickReason, deferrals)
         CancelEvent()
         return false
     end
-	deferrals.update("\nChecking server status...")
+	deferrals.update("\nĐang kiểm tra trạng thái server...")
     if(MSCore.Config.Server.closed and not IsPlayerAceAllowed(src, "msadmin.join")) then
-		MSCore.Functions.Kick(_source, 'The server is closed:\n'..MSCore.Config.Server.closedReason, setKickReason, deferrals)
+		MSCore.Functions.Kick(_source, 'Server đã đóng:\n'..MSCore.Config.Server.closedReason, setKickReason, deferrals)
         CancelEvent()
         return false
 	end
@@ -84,7 +84,7 @@ AddEventHandler('MSCore:server:CloseServer', function(reason)
         MSCore.Config.Server.closedReason = reason
         TriggerClientEvent("msadmin:client:SetServerStatus", -1, true)
 	else
-		MSCore.Functions.Kick(src, "You are not allowed for this...", nil, nil)
+		MSCore.Functions.Kick(src, "Bạn không có quyền...", nil, nil)
     end
 end)
 
@@ -96,7 +96,7 @@ AddEventHandler('MSCore:server:OpenServer', function()
         MSCore.Config.Server.closed = false
         TriggerClientEvent("msadmin:client:SetServerStatus", -1, false)
     else
-        MSCore.Functions.Kick(src, "You are not allowed for this...", nil, nil)
+        MSCore.Functions.Kick(src, "Bạn không có quyền...", nil, nil)
     end
 end)
 
@@ -116,7 +116,7 @@ AddEventHandler('MSCore:UpdatePlayer', function(data)
 		Player.Functions.SetMetaData("hunger", newHunger)
 
 		Player.Functions.AddMoney("bank", Player.PlayerData.job.payment)
-		TriggerClientEvent('MSCore:Notify', src, "You received your salary payment of $"..Player.PlayerData.job.payment)
+		TriggerClientEvent('MSCore:Notify', src, "Lương về $"..Player.PlayerData.job.payment)
 		TriggerClientEvent("hud:client:UpdateNeeds", src, newHunger, newThirst)
 
 		Player.Functions.Save()
@@ -191,7 +191,7 @@ AddEventHandler('chatMessage', function(source, n, message)
 				table.remove(args, 1)
 				if (MSCore.Functions.HasPermission(source, "god") or MSCore.Functions.HasPermission(source, MSCore.Commands.List[command].permission)) then
 					if (MSCore.Commands.List[command].argsrequired and #MSCore.Commands.List[command].arguments ~= 0 and args[#MSCore.Commands.List[command].arguments] == nil) then
-					    TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "All arguments must be filled out!")
+					    TriggerClientEvent('chatMessage', source, "Hệ thống", "error", "Phải điền đầy đủ tham số")
 					    local agus = ""
 					    for name, help in pairs(MSCore.Commands.List[command].arguments) do
 					    	agus = agus .. " ["..help.name.."]"
@@ -201,7 +201,7 @@ AddEventHandler('chatMessage', function(source, n, message)
 						MSCore.Commands.List[command].callback(source, args)
 					end
 				else
-					TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "No access to this command!")
+					TriggerClientEvent('chatMessage', source, "Hệ thống", "error", "Không có quyền dùng lệnh này")
 				end
 			end
 		end
@@ -215,7 +215,7 @@ AddEventHandler('MSCore:CallCommand', function(command, args)
 		if Player ~= nil then
 			if (MSCore.Functions.HasPermission(source, "god")) or (MSCore.Functions.HasPermission(source, MSCore.Commands.List[command].permission)) or (MSCore.Commands.List[command].permission == Player.PlayerData.job.name) then
 				if (MSCore.Commands.List[command].argsrequired and #MSCore.Commands.List[command].arguments ~= 0 and args[#MSCore.Commands.List[command].arguments] == nil) then
-					TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "All arguments must be filled!")
+					TriggerClientEvent('chatMessage', source, "Hệ thống", "error", "Phải điền đầy đủ tham số")
 					local agus = ""
 					for name, help in pairs(MSCore.Commands.List[command].arguments) do
 						agus = agus .. " ["..help.name.."]"
@@ -225,7 +225,7 @@ AddEventHandler('MSCore:CallCommand', function(command, args)
 					MSCore.Commands.List[command].callback(source, args)
 				end
 			else
-				TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "No access to this command!")
+				TriggerClientEvent('chatMessage', source, "Hệ thống", "error", "Không có quyền dùng lệnh này!")
 			end
 		end
 	end
@@ -242,10 +242,10 @@ AddEventHandler('MSCore:ToggleDuty', function()
 	local Player = MSCore.Functions.GetPlayer(src)
 	if Player.PlayerData.job.onduty then
 		Player.Functions.SetJobDuty(false)
-		TriggerClientEvent('MSCore:Notify', src, "You are now off duty!")
+		TriggerClientEvent('MSCore:Notify', src, "Bạn đã ngoài giờ làm")
 	else
 		Player.Functions.SetJobDuty(true)
-		TriggerClientEvent('MSCore:Notify', src, "You are now working.!")
+		TriggerClientEvent('MSCore:Notify', src, "Bạn đang trong giờ làm")
 	end
 	TriggerClientEvent("MSCore:Client:SetDuty", src, Player.PlayerData.job.onduty)
 end)

@@ -44,15 +44,15 @@ Config.ShowTemp = false
 
 -- simple localization
 Config.Language = {
-    joining = "\xF0\x9F\x8E\x89A Loading..",
-    connecting = "\xE2\x8F\xB3A Connecting...",
-    idrr = "\xE2\x9D\x97[Queue] Error: Failed to retrieve IDs, try restarting the game.",
-    err = "\xE2\x9D\x97[Queue] There is an error",
-    pos = "\xF0\x9F\x90\x8CYou are %d/%d on the waiting list \xF0\x9F\x95\x9C%s",
-    connectingerr = "\xE2\x9D\x97[Queue] Error: Cannot add to queue.",
-    timedout = "\xE2\x9D\x97[Queue] Error: Timed out",
-    wlonly = "\xE2\x9D\x97[Queue] You must have a whitelist to join the server.",
-    steam = "\xE2\x9D\x97 [Queue] Error: Steam must be open.."
+    joining = "\xF0\x9F\x8E\x89A Đang tải..",
+    connecting = "\xE2\x8F\xB3A Đang kết nối...",
+    idrr = "\xE2\x9D\x97[Hàng chờ] Lỗi: Không lấy được ID, hãy khởi động lại game.",
+    err = "\xE2\x9D\x97[Hàng chờ] Có lỗi",
+    pos = "\xF0\x9F\x90\x8CBạn ở vị trí %d/%d trong danh sách chờ \xF0\x9F\x95\x9C%s",
+    connectingerr = "\xE2\x9D\x97[Hàng chờ] Lỗi: Không thể thêm vào hàng chờ.",
+    timedout = "\xE2\x9D\x97[Hàng chờ] Lỗi: Quá thời gian kết nối",
+    wlonly = "\xE2\x9D\x97[Hàng chờ] Bạn phải ở trong whilelist để vào server.",
+    steam = "\xE2\x9D\x97 [Hàng chờ] Lỗi: Chưa mở Steam.."
 }
 
 Citizen.CreateThread(function()
@@ -69,29 +69,29 @@ function loadDatabaseQueue()
 	end)
 end
 
-MSCore.Commands.Add("reloadqueuepriority", "Give queue priority", {{name="id", help="ID of the player"}, {name="priority", help="Priority level"}}, true, function(source, args)
+MSCore.Commands.Add("reloadqueuepriority", "Tải lại ưu tiên hàng chờ", {{name="id", help="ID of the player"}, {name="priority", help="Priority level"}}, true, function(source, args)
 	loadDatabaseQueue()
 	TriggerClientEvent('chatMessage', source, "SYSTEM", "normal", "REFRESH")	
 end, "god")
 
-MSCore.Commands.Add("addpriority", "Give queue priority", {{name="id", help="ID of the player"}, {name="priority", help="Priority level"}}, true, function(source, args)
+MSCore.Commands.Add("addpriority", "Thêm ưu tiên hàng chờ", {{name="id", help="ID of the player"}, {name="priority", help="Priority level"}}, true, function(source, args)
     local Player = MSCore.Functions.GetPlayer(tonumber(args[1]))
 	local level = tonumber(args[2])
 	if Player ~= nil then
         AddPriority(Player.PlayerData.source, level)
-        TriggerClientEvent('chatMessage', source, "SYSTEM", "normal", "you gave " .. GetPlayerName(Player.PlayerData.source) .. " priority level ("..level..")")	
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "normal", "Bạn đã cho " .. GetPlayerName(Player.PlayerData.source) .. " mức ưu tiên ("..level..")")	
 	else
-		TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Player not online!")	
+		TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Người chơi không online")	
 	end
 end, "god")
 
-MSCore.Commands.Add("removepriority", "Take priority away from someone", {{name="id", help="ID of the player"}}, true, function(source, args)
+MSCore.Commands.Add("removepriority", "Bỏ ưu tiên hàng chờ", {{name="id", help="ID of the player"}}, true, function(source, args)
 	local Player = MSCore.Functions.GetPlayer(tonumber(args[1]))
 	if Player ~= nil then
         RemovePriority(Player.PlayerData.source)
-        TriggerClientEvent('chatMessage', source, "SYSTEM", "normal", "You removed priority from " .. GetPlayerName(Player.PlayerData.source))	
+        TriggerClientEvent('chatMessage', source, "SYSTEM", "normal", "Bạn đã xóa ưu tiên của " .. GetPlayerName(Player.PlayerData.source))	
 	else
-		TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Player not online!")	
+		TriggerClientEvent('chatMessage', source, "SYSTEM", "error", "Người chơi không online")	
 	end
 end, "god")
 

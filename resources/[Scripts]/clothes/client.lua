@@ -64,9 +64,9 @@ function drawTxt(x,y ,width,height,scale, text, r,g,b,a)
 	x = x * 0.8  
 	width = width * 0.8
 	height = height * 0.8
-	SetTextFont(6)
+	SetTextFont(MSCore.quicksandId)
 	SetTextProportional(0)
-	SetTextScale(0.35, 0.35)
+	SetTextScale(0.3, 0.3)
 	SetTextColour(r, g, b, a)
 	SetTextDropShadow(0, 0, 0, 0,255)
 	SetTextEdge(1, 0, 0, 0, 255)
@@ -95,7 +95,7 @@ function startClothes(hasToPay)
 			if cashBalance >= 100 or cashBalance >= 100 then
 				TriggerServerEvent("clothes:server:PayClothes")
 			else
-				MSCore.Functions.Notify("You don\'t have enough money! ($100,-)")
+				MSCore.Functions.Notify("Bạn không đủ tiền")
 			end
 		end)
 	end
@@ -156,7 +156,7 @@ function ClothShop()
 
 	HideHudAndRadarThisFrame()
 	custDrawRect(0.12,0.07,0.22,0.09,33,33,33,200) -- header
-	drawTxt(0.177, 0.066, 0.25, 0.03, 0.40,"Clothes shop",255,255,255,255) -- header
+	drawTxt(0.177, 0.066, 0.25, 0.03, 0.40,"Cửa hàng quần áo",255,255,255,255) -- header
 	custDrawRect(0.12,0.024,0.216,0.005,111,1,1,220) -- blue_head
 	if cmenu.show == 1 then
 		if cmenu.row == 1 then custDrawRect(0.12,0.135,0.22,0.035,76,88,102,220) else custDrawRect(0.12,0.135,0.22,0.035,33,33,33,200) end
@@ -164,11 +164,11 @@ function ClothShop()
 		if cmenu.row == 3 then custDrawRect(0.12,0.209,0.22,0.035,76,88,102,220) else custDrawRect(0.12,0.209,0.22,0.035,33,33,33,200) end
 		if cmenu.row == 4 then custDrawRect(0.12,0.246,0.22,0.035,76,88,102,220) else custDrawRect(0.12,0.246,0.22,0.035,33,33,33,200) end
 		if cmenu.row == 5 then custDrawRect(0.12,0.283,0.22,0.035,76,88,102,220) else custDrawRect(0.12,0.283,0.22,0.035,33,33,33,200) end
-		drawTxt(0.177, 0.128, 0.25, 0.03, 0.40,"General",255,255,255,255)
-		drawTxt(0.177, 0.165, 0.25, 0.03, 0.40,"Accesories",255,255,255,255) -- row_2 (+0.037)
-		drawTxt(0.177, 0.202, 0.25, 0.03, 0.40,"Model",255,255,255,255) -- row_2 (+0.037)
-		drawTxt(0.177, 0.239, 0.25, 0.03, 0.40,"Overlay",255,255,255,255) -- row_2 (+0.037)
-		drawTxt(0.177, 0.276, 0.25, 0.03, 0.40,"Save",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.128, 0.25, 0.03, 0.40,"Chung",255,255,255,255)
+		drawTxt(0.177, 0.165, 0.25, 0.03, 0.40,"Phụ kiện",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.202, 0.25, 0.03, 0.40,"Mẫu",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.239, 0.25, 0.03, 0.40,"Trang điểm",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.276, 0.25, 0.03, 0.40,"Lưu",255,255,255,255) -- row_2 (+0.037)
 
 		
 
@@ -186,14 +186,14 @@ function ClothShop()
 		custDrawRect(0.12,0.246,0.22,0.035,33,33,33,200)
 		custDrawRect(0.12,0.283,0.22,0.035,33,33,33,200)
 
-		drawTxt(0.177, 0.128, 0.25, 0.03, 0.40,"~b~General",255,255,255,255)
-		drawTxt(0.177, 0.165, 0.25, 0.03, 0.40,"Accesories",255,255,255,255) -- row_2 (+0.037)
-		drawTxt(0.177, 0.202, 0.25, 0.03, 0.40,"Model",255,255,255,255) -- row_2 (+0.037)
-		drawTxt(0.177, 0.239, 0.25, 0.03, 0.40,"Overlay",255,255,255,255) -- row_2 (+0.037)
-		drawTxt(0.177, 0.276, 0.25, 0.03, 0.40,"Save",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.128, 0.25, 0.03, 0.40,"~b~Chung",255,255,255,255)
+		drawTxt(0.177, 0.165, 0.25, 0.03, 0.40,"Phụ kiện",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.202, 0.25, 0.03, 0.40,"Mẫu",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.239, 0.25, 0.03, 0.40,"Trang điểm",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.276, 0.25, 0.03, 0.40,"Lưu",255,255,255,255) -- row_2 (+0.037)
 		---
 		custDrawRect(0.328,0.051,0.18,0.049,33,33,33,200) -- title
-		drawTxt(0.382,0.048,0.175,0.035, 0.40,"General",255,255,255,255)
+		drawTxt(0.382,0.048,0.175,0.035, 0.40,"Chung",255,255,255,255)
 		custDrawRect(0.328,0.024,0.175,0.005,111,1,1,220)
 		if cmenu.row == 1 then custDrawRect(0.328,0.096,0.18,0.035,76,88,102,220) else custDrawRect(0.328,0.096,0.18,0.035,33,33,33,200) end
 		if cmenu.row == 2 then custDrawRect(0.328,0.133,0.18,0.035,76,88,102,220) else custDrawRect(0.328,0.133,0.18,0.035,33,33,33,200) end
@@ -203,18 +203,18 @@ function ClothShop()
 
 
 		local accessoriesList = {
-			[1] = "Face",
-			[2] = "Mask",
-			[3] = "Hair",
-			[4] = "Arms",
-			[5] = "Pants",
-			[6] = "Bag",			
-			[7] = "Shoes",
-			[8] = "Neck/Tie",
-			[9] = "Undershirt",
-			[10] = "Vests",			
+			[1] = "Mặt",
+			[2] = "Mặt nạ",
+			[3] = "Tóc",
+			[4] = "Tay",
+			[5] = "Quần",
+			[6] = "Túi",			
+			[7] = "Giày",
+			[8] = "Cổ/Cà vạt",
+			[9] = "Áo trong",
+			[10] = "Áo vest",			
 			[11] = "Decals",
-			[12] = "Jackets / Top shirts",
+			[12] = "Áo khoác / Áo ngoài",
 		}
 
 		local draw_str = "Slot: " .. accessoriesList[cmenu.field] .. " " .. cmenu.field .. "/12"
@@ -224,7 +224,7 @@ function ClothShop()
 		if GetNumberOfPedDrawableVariations(GetPlayerPed(-1), cmenu.field-1) ~= 0 and GetNumberOfPedDrawableVariations(GetPlayerPed(-1), cmenu.field-1) ~= false then
 			custDrawRect(0.328,0.142,0.175,0.014,222,222,222,220)
 			local link = 0.138/(GetNumberOfPedDrawableVariations(GetPlayerPed(-1), cmenu.field-1)-1)
-			if accessoriesList[cmenu.field] == "Face" then
+			if accessoriesList[cmenu.field] == "Mặt" then
 				link = 0.138/45
 			end
 
@@ -238,7 +238,7 @@ function ClothShop()
 
 			custDrawRect(0.328,0.179,0.175,0.014,222,222,222,220) -- bar_main
 			local link = 0.138/(GetNumberOfPedTextureVariations(GetPlayerPed(-1), cmenu.field-1, draw[1])-1)
-			if accessoriesList[cmenu.field] == "Hair" then
+			if accessoriesList[cmenu.field] == "Tóc" then
 				link = 0.138/(GetNumHairColors()-1)
 			end
 			local new_x = (bar.x-0.069)+(link*draw[2])
@@ -249,7 +249,7 @@ function ClothShop()
 			--
 			custDrawRect(0.328,0.216,0.175,0.014,222,222,222,220) 
 			local link = 0.138/2
-			if accessoriesList[cmenu.field] == "Hair" then
+			if accessoriesList[cmenu.field] == "Tóc" then
 				link = 0.138/(GetNumHairColors()-1)
 			end
 			local new_x = (bar.x-0.069)+(link*draw[3])
@@ -293,7 +293,7 @@ function ClothShop()
 					end
 
 					draw[2] = 0
-					if accessoriesList[cmenu.field] == "Face" then
+					if accessoriesList[cmenu.field] == "Mặt" then
 						headblend = draw[1]
 						SetPedHeadBlendData(GetPlayerPed(-1), draw[1], draw[1], draw[1], draw[1], draw[1], draw[1], 1.0, 1.0, 1.0, true)
 					else
@@ -301,7 +301,7 @@ function ClothShop()
 					end
 				elseif cmenu.row == 3 then
 					if draw[2] > 0 then draw[2] = draw[2]-1 else draw[2] = 0 end
-					if accessoriesList[cmenu.field] == "Hair" then
+					if accessoriesList[cmenu.field] == "Tóc" then
 						SetPedHairColor(GetPlayerPed(-1), draw[2], draw[3])
 						haircolor_1 = draw[2]
 						haircolor_2 = draw[3]
@@ -310,7 +310,7 @@ function ClothShop()
 					end
 				elseif cmenu.row == 4 then
 					if draw[3] > 0 then draw[3] = draw[3]-1 end
-					if accessoriesList[cmenu.field] == "Hair" then
+					if accessoriesList[cmenu.field] == "Tóc" then
 						SetPedHairColor(GetPlayerPed(-1), draw[2], draw[3])
 						haircolor_1 = draw[2]
 						haircolor_2 = draw[3]
@@ -349,14 +349,14 @@ function ClothShop()
 						end
 					end
 					draw[2] = 0
-					if accessoriesList[cmenu.field] == "Face" then
+					if accessoriesList[cmenu.field] == "Mặt" then
 						headblend = draw[1]
 						SetPedHeadBlendData(GetPlayerPed(-1), draw[1], draw[1], draw[1], draw[1], draw[1], draw[1], 1.0, 1.0, 1.0, true)
 					else
 						SetPedComponentVariation(GetPlayerPed(-1), cmenu.field-1, draw[1], draw[2], draw[3])
 					end
 				elseif cmenu.row == 3 then
-					if accessoriesList[cmenu.field] == "Hair" then
+					if accessoriesList[cmenu.field] == "Tóc" then
 						if draw[2] < GetNumHairColors()-1 then draw[2] = draw[2]+1 else draw[2] = GetNumHairColors()-1 end
 						SetPedHairColor(GetPlayerPed(-1), draw[2], draw[3])
 						haircolor_1 = draw[2]
@@ -366,7 +366,7 @@ function ClothShop()
 						SetPedComponentVariation(GetPlayerPed(-1), cmenu.field-1, draw[1], draw[2], draw[3])
 					end
 				elseif cmenu.row == 4 then
-					if accessoriesList[cmenu.field] == "Hair" then
+					if accessoriesList[cmenu.field] == "Tóc" then
 						if draw[3] < GetNumHairColors()-1 then draw[3] = draw[3]+1 end
 						SetPedHairColor(GetPlayerPed(-1), draw[2], draw[3])
 						haircolor_1 = draw[2]
@@ -423,28 +423,28 @@ function ClothShop()
 		custDrawRect(0.12,0.246,0.22,0.035,33,33,33,200)
 		custDrawRect(0.12,0.283,0.22,0.035,33,33,33,200)
 
-		drawTxt(0.177, 0.128, 0.25, 0.03, 0.40,"General",255,255,255,255)
-		drawTxt(0.177, 0.165, 0.25, 0.03, 0.40,"~b~Accesories",255,255,255,255) -- row_2 (+0.037)
-		drawTxt(0.177, 0.202, 0.25, 0.03, 0.40,"Model",255,255,255,255) -- row_2 (+0.037)
-		drawTxt(0.177, 0.239, 0.25, 0.03, 0.40,"Overlay",255,255,255,255) -- row_2 (+0.037)
-		drawTxt(0.177, 0.276, 0.25, 0.03, 0.40,"Save",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.128, 0.25, 0.03, 0.40,"Chung",255,255,255,255)
+		drawTxt(0.177, 0.165, 0.25, 0.03, 0.40,"~b~Phụ kiện",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.202, 0.25, 0.03, 0.40,"Mẫu",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.239, 0.25, 0.03, 0.40,"Trang điểm",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.276, 0.25, 0.03, 0.40,"Lưu",255,255,255,255) -- row_2 (+0.037)
 		---
 		custDrawRect(0.328,0.051,0.18,0.049,33,33,33,200) -- title
-		drawTxt(0.382,0.048,0.175,0.035, 0.40,"Accesories",255,255,255,255)
+		drawTxt(0.382,0.048,0.175,0.035, 0.40,"Phụ kiện",255,255,255,255)
 		custDrawRect(0.328,0.024,0.175,0.005,111,1,1,220)
 		if cmenu.row == 1 then custDrawRect(0.328,0.096,0.18,0.035,76,88,102,220) else custDrawRect(0.328,0.096,0.18,0.035,33,33,33,200) end
 		if cmenu.row == 2 then custDrawRect(0.328,0.133,0.18,0.035,76,88,102,220) else custDrawRect(0.328,0.133,0.18,0.035,33,33,33,200) end
 		if cmenu.row == 3 then custDrawRect(0.328,0.170,0.18,0.035,76,88,102,220) else custDrawRect(0.328,0.170,0.18,0.035,33,33,33,200) end
 
 		local accessoriesList = {
-			[1] = "Helms",
-			[2] = "Glasses",
-			[3] = "Earrings",
-			[4] = "Not available",
-			[5] = "Not available",
-			[6] = "Not available",			
-			[7] = "Watch",
-			[8] = "Bracelets",
+			[1] = "Mũ bảo hiểm",
+			[2] = "Kính",
+			[3] = "Khuyên tai",
+			[4] = "Không khả dụng",
+			[5] = "Không khả dụng",
+			[6] = "Không khả dụng",			
+			[7] = "Đồng hồ",
+			[8] = "Vòng tay",
 		}
 
 		local draw_str = "Slot: " .. accessoriesList[cmenu.field] .. " " .. cmenu.field .. "/8"
@@ -545,14 +545,14 @@ function ClothShop()
 		custDrawRect(0.12,0.246,0.22,0.035,33,33,33,200)
 		custDrawRect(0.12,0.283,0.22,0.035,33,33,33,200)
 
-		drawTxt(0.177, 0.128, 0.25, 0.03, 0.40,"General",255,255,255,255)
-		drawTxt(0.177, 0.165, 0.25, 0.03, 0.40,"Accesories",255,255,255,255)
-		drawTxt(0.177, 0.202, 0.25, 0.03, 0.40,"~b~Model",255,255,255,255)
-		drawTxt(0.177, 0.239, 0.25, 0.03, 0.40,"Overlay",255,255,255,255)
-		drawTxt(0.177, 0.276, 0.25, 0.03, 0.40,"Save",255,255,255,255)
+		drawTxt(0.177, 0.128, 0.25, 0.03, 0.40,"Chung",255,255,255,255)
+		drawTxt(0.177, 0.165, 0.25, 0.03, 0.40,"Phụ kiện",255,255,255,255)
+		drawTxt(0.177, 0.202, 0.25, 0.03, 0.40,"~b~Mẫu",255,255,255,255)
+		drawTxt(0.177, 0.239, 0.25, 0.03, 0.40,"Trang điểm",255,255,255,255)
+		drawTxt(0.177, 0.276, 0.25, 0.03, 0.40,"Lưu",255,255,255,255)
 
 		custDrawRect(0.328,0.051,0.18,0.049,33,33,33,200)
-		drawTxt(0.382,0.048,0.175,0.035, 0.40,"Model",255,255,255,255)
+		drawTxt(0.382,0.048,0.175,0.035, 0.40,"Mẫu",255,255,255,255)
 		custDrawRect(0.328,0.024,0.175,0.005,111,1,1,220)
 		if cmenu.row == 1 then custDrawRect(0.328,0.096,0.18,0.035,76,88,102,220) else custDrawRect(0.328,0.096,0.18,0.035,33,33,33,200) end
 		if cmenu.row == 2 then custDrawRect(0.328,0.133,0.18,0.035,76,88,102,220) else custDrawRect(0.328,0.133,0.18,0.035,33,33,33,200) end
@@ -562,7 +562,7 @@ function ClothShop()
 		drawTxt(0.328,0.093,0.175,0.035, 0.40,draw_str,255,255,255,255)
 		draw_str = string.format("%s", selected_skins[model_id])
 		drawTxt(0.328,0.093+0.037,0.175,0.035, 0.40,draw_str,255,255,255,255)
-		drawTxt(0.328,0.093+0.037*2,0.175,0.035, 0.40,"Search by name",255,255,255,255)
+		drawTxt(0.328,0.093+0.037*2,0.175,0.035, 0.40,"Tìm bằng tên",255,255,255,255)
 		if IsControlJustPressed(1, 189) or IsDisabledControlJustPressed(1, 189) then -- left
 
 			RequestModel(selected_skins[(model_id - 1)])
@@ -636,24 +636,24 @@ function ClothShop()
 		custDrawRect(0.12,0.209,0.22,0.035,33,33,33,200)
 		custDrawRect(0.12,0.246,0.22,0.035,76,88,102,200)
 		custDrawRect(0.12,0.283,0.22,0.035,33,33,33,200)
-		drawTxt(0.177, 0.128, 0.25, 0.03, 0.40,"General",255,255,255,255)
-		drawTxt(0.177, 0.165, 0.25, 0.03, 0.40,"Accesories",255,255,255,255) -- row_2 (+0.037)
-		drawTxt(0.177, 0.202, 0.25, 0.03, 0.40,"Model",255,255,255,255) -- row_2 (+0.037)
-		drawTxt(0.177, 0.239, 0.25, 0.03, 0.40,"~b~Overlay",255,255,255,255) -- row_2 (+0.037)
-		drawTxt(0.177, 0.276, 0.25, 0.03, 0.40,"Save",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.128, 0.25, 0.03, 0.40,"Chung",255,255,255,255)
+		drawTxt(0.177, 0.165, 0.25, 0.03, 0.40,"Phụ kiện",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.202, 0.25, 0.03, 0.40,"Mẫu",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.239, 0.25, 0.03, 0.40,"~b~Trang điểm",255,255,255,255) -- row_2 (+0.037)
+		drawTxt(0.177, 0.276, 0.25, 0.03, 0.40,"Lưu",255,255,255,255) -- row_2 (+0.037)
 		---
 		custDrawRect(0.328,0.051,0.18,0.049,33,33,33,200) -- title
-		drawTxt(0.382,0.048,0.175,0.035, 0.40,"Overlay",255,255,255,255)
+		drawTxt(0.382,0.048,0.175,0.035, 0.40,"Trang điểm",255,255,255,255)
 		custDrawRect(0.328,0.024,0.175,0.005,111,1,1,220)
 		if cmenu.row == 1 then custDrawRect(0.328,0.096,0.18,0.035,76,88,102,220) else custDrawRect(0.328,0.096,0.18,0.035,33,33,33,200) end
 		if cmenu.row == 2 then custDrawRect(0.328,0.133,0.18,0.035,76,88,102,220) else custDrawRect(0.328,0.133,0.18,0.035,33,33,33,200) end
 		if cmenu.row == 3 then custDrawRect(0.328,0.170,0.18,0.035,76,88,102,220) else custDrawRect(0.328,0.170,0.18,0.035,33,33,33,200) end
 
 		local accessoriesList = {
-			[1] = "Beards",
-			[2] = "Eyebrows",
-			[3] = "Age",
-			[4] = "Make-up",
+			[1] = "Râu",
+			[2] = "Lông mày",
+			[3] = "Tuổi",
+			[4] = "Trang điểm",
 		}
 
 		local draw_str = "Slot: " .. accessoriesList[cmenu.field] .. " " .. cmenu.field .. "/4"
@@ -725,8 +725,8 @@ function ClothShop()
 				end
 			end
 		else
-			drawTxt(0.328,0.130,0.175,0.035, 0.40,"Not available",255,255,255,255)
-			drawTxt(0.328,0.167,0.175,0.035, 0.40,"Not available",255,255,255,255)
+			drawTxt(0.328,0.130,0.175,0.035, 0.40,"Không khả dụng",255,255,255,255)
+			drawTxt(0.328,0.167,0.175,0.035, 0.40,"Không khả dụng",255,255,255,255)
 			if IsControlJustPressed(1, 189) or IsDisabledControlJustPressed(1, 189) then -- left
 				PlaySound(-1, "NAV_UP_DOWN", "HUD_FRONTEND_DEFAULT_SOUNDSET", 0, 0, 1)
 				if cmenu.field > 1 then 
@@ -1174,7 +1174,7 @@ Citizen.CreateThread(function()
 		SetBlipScale  (blip, 0.7)
 		SetBlipAsShortRange(blip, true)
 		BeginTextCommandSetBlipName("STRING")
-		AddTextComponentString("Loja De Roupa")
+		AddTextComponentString("Cửa hàng quần áo")
 		EndTextCommandSetBlipName(blip)
 	  end
 	while true do
@@ -1183,7 +1183,7 @@ Citizen.CreateThread(function()
 
 		if nearcloth < 5.0 and cmenu.show == 0 and MSCore ~= nil then
 			local pos = GetEntityCoords(GetPlayerPed(-1))
-			MSCore.Functions.DrawText3D(pos.x, pos.y, pos.z, "~g~E~w~ - To change your clothes / ~g~H~w~ - To save your clothes")
+			MSCore.Functions.DrawText3D(pos.x, pos.y, pos.z, "~g~E~w~ - Thay đổi trang phục / ~g~H~w~ - To save your clothes")
 			if IsControlJustPressed(1, Keys["E"]) then
 				clothingbad()
 				MSCore.Functions.GetPlayerData(function(PlayerData)

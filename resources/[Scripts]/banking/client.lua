@@ -247,7 +247,7 @@ Citizen.CreateThread(function()
         elseif IsNearATM() then
           atBank = true
           inRange = true
-          DrawText3Ds(pos.x, pos.y, pos.z, '[E] Nạp thẻ ATM')
+          DrawText3Ds(pos.x, pos.y, pos.z, '~g~E~w~ - Nạp thẻ ATM')
           if IsControlJustPressed(1, Keys["E"])  then
               if (not IsInVehicle()) then
                   if bankOpen then
